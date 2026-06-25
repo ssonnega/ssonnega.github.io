@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,247 +9,196 @@
 
     <link rel="stylesheet" href="styles.css">
 
-    <!-- Leaflet CSS -->
-    <link
-        rel="stylesheet"
-        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    />
+    <link rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
-    <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 
 <body>
 
-    <!-- ===========================
-         Navigation
-    ============================ -->
+<header class="site-header">
 
-    <header class="site-header">
+    <div class="logo">
+        ⛷️ Ski Smart
+    </div>
 
-        <div class="logo">
-            ⛷️ Ski Smart
-        </div>
+    <nav>
 
-        <nav>
-            <a href="#hero">Home</a>
-            <a href="#map-section">Map</a>
-            <a href="#about">About</a>
-        </nav>
+        <a href="#hero">Home</a>
+        <a href="#map-section">Map</a>
+        <a href="#about">About</a>
 
-    </header>
+    </nav>
 
+</header>
 
 
-    <!-- ===========================
-         Hero
-    ============================ -->
+<section id="hero" class="hero">
 
-    <section id="hero" class="hero">
+    <div class="hero-overlay">
 
-        <div class="hero-overlay">
-
-            <h1>
-                Find Your Perfect Ski Resort
-            </h1>
-
-            <p>
-
-                Planning your next ski trip doesn't have to be stressful.
-
-                Compare lift ticket prices, ski pass access, terrain,
-                snowfall, and mountain information from ski resorts across
-                the United States—all in one place.
-
-            </p>
-
-            <a href="#map-section" class="primary-button">
-                Explore Resorts ↓
-            </a>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- ===========================
-         Stats
-    ============================ -->
-
-    <section class="stats">
-
-        <div class="stat-card">
-
-            <h2 id="resort-count">
-                35+
-            </h2>
-
-            <p>Resorts</p>
-
-        </div>
-
-        <div class="stat-card">
-
-            <h2>
-                5
-            </h2>
-
-            <p>Regions</p>
-
-        </div>
-
-        <div class="stat-card">
-
-            <h2>
-                Epic • Ikon • Indy
-            </h2>
-
-            <p>Passes</p>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- ===========================
-         Search + Filters
-    ============================ -->
-
-    <section class="filters">
-
-        <h2>Explore Resorts</h2>
-
-        <input
-            id="search"
-            type="text"
-            placeholder="Search for a resort..."
-        >
-
-        <div class="filter-grid">
-
-            <select id="region-filter">
-
-                <option value="">All Regions</option>
-
-                <option>West</option>
-                <option>Rockies</option>
-                <option>Northeast</option>
-                <option>Midwest</option>
-                <option>Southeast</option>
-
-            </select>
-
-
-            <select id="pass-filter">
-
-                <option value="">All Passes</option>
-
-                <option>Epic</option>
-                <option>Ikon</option>
-                <option>Indy</option>
-                <option>Independent</option>
-
-            </select>
-
-
-            <select id="price-filter">
-
-                <option value="999">$ Any Price</option>
-
-                <option value="100">Under $100</option>
-
-                <option value="150">Under $150</option>
-
-                <option value="200">Under $200</option>
-
-            </select>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- ===========================
-         Map
-    ============================ -->
-
-    <section
-        id="map-section"
-        class="map-section"
-    >
-
-        <div id="map"></div>
-
-    </section>
-
-
-
-    <!-- ===========================
-         Resort Cards
-    ============================ -->
-
-    <section class="resorts">
-
-        <h2>Resorts</h2>
-
-        <div id="resort-list">
-
-            <!-- JavaScript adds resort cards here -->
-
-        </div>
-
-    </section>
-
-
-
-    <!-- ===========================
-         About
-    ============================ -->
-
-    <section
-        id="about"
-        class="about"
-    >
-
-        <h2>
-            Why Ski Smart?
-        </h2>
+        <h1>Find Your Perfect Ski Resort</h1>
 
         <p>
 
-            Ski Smart helps you compare ski resorts across the United States
-            so you can spend less time researching and more time skiing.
+            Planning your next ski trip doesn't have to be stressful.
 
-            Whether you're chasing powder, planning a family vacation,
-            or trying to maximize your Epic, Ikon, or Indy Pass,
-            Ski Smart helps you find the mountain that's right for you.
+            Search ski resorts, compare lift ticket prices,
+            and discover the best mountain for your next adventure.
 
         </p>
 
-    </section>
+        <div class="hero-search">
+
+            <input
+                id="search"
+                type="text"
+                placeholder="🔍 Search resorts, states, or ski passes..."
+            >
+
+        </div>
+
+        <a href="#map-section" class="primary-button">
+
+            Explore the Map
+
+        </a>
+
+    </div>
+
+</section>
 
 
+<section class="stats">
 
-    <!-- ===========================
-         Footer
-    ============================ -->
+    <div class="stat-card">
 
-    <footer>
+        <h2 id="resort-count">0</h2>
 
-        <p>
+        <p>Resorts</p>
 
-            © 2026 Ski Smart
+    </div>
 
-        </p>
+    <div class="stat-card">
 
-    </footer>
+        <h2>Epic • Ikon • Indy</h2>
+
+        <p>Ski Passes</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <h2>USA</h2>
+
+        <p>Coverage</p>
+
+    </div>
+
+</section>
 
 
+<section class="filters">
 
-    <script src="script.js"></script>
+<h2>Filter Resorts</h2>
+
+<div class="filter-grid">
+
+<select id="region-filter">
+
+<option value="">All Regions</option>
+
+<option value="West">West</option>
+
+<option value="Rockies">Rockies</option>
+
+<option value="Northeast">Northeast</option>
+
+<option value="Midwest">Midwest</option>
+
+<option value="Southeast">Southeast</option>
+
+</select>
+
+<select id="pass-filter">
+
+<option value="">All Passes</option>
+
+<option value="Epic">Epic</option>
+
+<option value="Ikon">Ikon</option>
+
+<option value="Indy">Indy</option>
+
+<option value="Independent">Independent</option>
+
+</select>
+
+<select id="price-filter">
+
+<option value="999">Any Price</option>
+
+<option value="100">Under $100</option>
+
+<option value="150">Under $150</option>
+
+<option value="200">Under $200</option>
+
+</select>
+
+</div>
+
+</section>
+
+
+<section id="map-section" class="map-section">
+
+<div id="map"></div>
+
+</section>
+
+
+<section class="resorts">
+
+<h2>Resorts</h2>
+
+<div id="resort-list"></div>
+
+</section>
+
+
+<section id="about" class="about">
+
+<h2>Why Ski Smart?</h2>
+
+<p>
+
+Ski Smart helps you compare ski resorts across the United States using one
+interactive map.
+
+Whether you're searching for the best value, looking for an Ikon mountain,
+or planning your next Epic Pass trip, Ski Smart helps you spend less time
+researching and more time skiing.
+
+</p>
+
+</section>
+
+
+<footer>
+
+<p>
+
+© 2026 Ski Smart
+
+</p>
+
+</footer>
+
+
+<script src="script.js"></script>
 
 </body>
+
 </html>
