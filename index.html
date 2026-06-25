@@ -10,11 +10,11 @@
 <meta name="keywords" content="affordable ski resorts, cheap ski resorts USA, ski resort prices, Epic Pass resorts, Ikon Pass resorts, budget skiing, ski ticket prices, best value ski resorts" />
 <meta name="author" content="Two More Skip the Last" />
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://skiareamap.github.io/" />
+<link rel="canonical" href="https://yourname.github.io/" />
 
 <!-- ── OPEN GRAPH (Facebook, LinkedIn, iMessage previews) ── -->
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://skiareamap.github.io/" />
+<meta property="og:url" content="https://yourname.github.io/" />
 <meta property="og:title" content="Two More Skip the Last — Find Affordable Ski Resorts in the US" />
 <meta property="og:description" content="Compare day ticket prices at 150 US ski resorts. Filter by region, pass, and price to find the best value mountain for your budget." />
 <meta property="og:image" content="https://images.unsplash.com/photo-1700142572634-150b3857e71d?fm=jpg&q=80&w=1200&h=630&auto=format&fit=crop" />
@@ -38,25 +38,25 @@
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": "https://skiareamap.github.io/#website",
-      "url": "https://skiareamap.github.io/",
+      "@id": "https://yourname.github.io/#website",
+      "url": "https://yourname.github.io/",
       "name": "Two More Skip the Last",
       "description": "Compare day ticket prices at 150 US ski resorts and find the most affordable skiing near you.",
       "inLanguage": "en-US",
       "publisher": {
         "@type": "Organization",
-        "@id": "https://skiareamap.github.io/#organization",
+        "@id": "https://yourname.github.io/#organization",
         "name": "Two More Skip the Last",
-        "url": "https://skiareamap.github.io/"
+        "url": "https://yourname.github.io/"
       }
     },
     {
       "@type": "WebPage",
-      "@id": "https://skiareamap.github.io/#webpage",
-      "url": "https://skiareamap.github.io/",
+      "@id": "https://yourname.github.io/#webpage",
+      "url": "https://yourname.github.io/",
       "name": "Two More Skip the Last — Find Affordable Ski Resorts in the US",
       "description": "Compare day ticket prices at 150 US ski resorts. Filter by region, state, pass (Epic, Ikon, Indy) and affordability tier to find the best value ski area for your budget.",
-      "isPartOf": { "@id": "https://skiareamap.github.io/#website" },
+      "isPartOf": { "@id": "https://yourname.github.io/#website" },
       "inLanguage": "en-US",
       "datePublished": "2025-01-01",
       "dateModified": "2025-01-01",
@@ -67,17 +67,17 @@
             "@type": "ListItem",
             "position": 1,
             "name": "Home",
-            "item": "https://skiareamap.github.io/"
+            "item": "https://yourname.github.io/"
           }
         ]
       }
     },
     {
       "@type": "Dataset",
-      "@id": "https://skiareamap.github.io/#dataset",
+      "@id": "https://yourname.github.io/#dataset",
       "name": "US Ski Resort Affordability Data",
       "description": "Day ticket prices, vertical drop, trail counts, and pass affiliations for 150 major US ski resorts for the 2024-25 season.",
-      "url": "https://skiareamap.github.io/",
+      "url": "https://yourname.github.io/",
       "keywords": ["ski resorts", "lift ticket prices", "ski passes", "Epic Pass", "Ikon Pass", "affordable skiing"],
       "spatialCoverage": {
         "@type": "Place",
@@ -86,12 +86,12 @@
       "temporalCoverage": "2024/2025",
       "license": "https://creativecommons.org/licenses/by/4.0/",
       "creator": {
-        "@id": "https://skiareamap.github.io/#organization"
+        "@id": "https://yourname.github.io/#organization"
       }
     },
     {
       "@type": "FAQPage",
-      "@id": "https://skiareamap.github.io/#faq",
+      "@id": "https://yourname.github.io/#faq",
       "mainEntity": [
         {
           "@type": "Question",
@@ -278,6 +278,17 @@ nav {
 }
 .filter-top { padding: 1.25rem; border-bottom: 1px solid #f0f0ea; flex-shrink: 0; }
 .filter-top h3 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #aaa; margin-bottom: 1rem; }
+.filter-toggle-btn {
+  display: none;
+  width: 100%; justify-content: space-between; align-items: center;
+  padding: 0.9rem 1.25rem; background: white; border: none; border-bottom: 1px solid #f0f0ea;
+  font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+  color: #888; cursor: pointer; font-family: inherit;
+}
+.filter-toggle-btn .arrow { transition: transform 0.2s; }
+.filter-toggle-btn.open .arrow { transform: rotate(180deg); display: inline-block; }
+.filters-collapsible { padding: 1rem 1.25rem; }
+.filters-collapsible.hidden { display: none; }
 .filter-row { margin-bottom: 0.9rem; }
 .filter-row label { display: block; font-size: 0.72rem; font-weight: 600; color: #999; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
 select {
@@ -324,12 +335,68 @@ footer {
 footer a { color: rgba(255,255,255,0.6); }
 
 /* ── RESPONSIVE ── */
+/* ── TABLET ── */
+@media (max-width: 900px) {
+  #filter-panel { width: 260px; min-width: 240px; }
+  .steps-grid { grid-template-columns: 1fr 1fr; }
+  .tiers-grid { grid-template-columns: 1fr; }
+}
+
+/* ── MOBILE ── */
 @media (max-width: 700px) {
+  nav { padding: 0 1rem; }
   .nav-links { display: none; }
-  .hero-stats { gap: 1.5rem; }
-  .map-layout { flex-direction: column; height: auto; }
-  #filter-panel { width: 100%; min-width: unset; max-height: 50vh; border-right: none; border-bottom: 1px solid #eee; }
-  #map { height: 60vw; min-height: 320px; }
+  .nav-cta { padding: 7px 14px; font-size: 0.8rem; }
+
+  .hero { min-height: 100svh; padding: 5rem 1.25rem 3rem; background-attachment: scroll; }
+  .hero h1 { font-size: 2rem; letter-spacing: -0.8px; }
+  .hero p { font-size: 0.95rem; }
+  .hero-actions { flex-direction: column; align-items: center; }
+  .btn-primary, .btn-secondary { width: 100%; max-width: 320px; text-align: center; padding: 15px 24px; }
+  .hero-stats { gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 2.5rem; }
+  .hero-stat .num { font-size: 1.6rem; }
+  .hero-eyebrow { font-size: 0.7rem; }
+  .scroll-hint { display: none; }
+
+  .section { padding: 3rem 1.25rem; }
+  .section-title { font-size: 1.6rem; }
+  .section-sub { font-size: 0.95rem; margin-bottom: 2rem; }
+  .steps-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .tiers-section { padding: 3rem 1.25rem; }
+  .tiers-grid { grid-template-columns: 1fr; gap: 1rem; }
+
+  .map-header { padding: 1.5rem 1.25rem 0.75rem; }
+  .map-header h2 { font-size: 1.2rem; }
+  .map-header p { font-size: 0.8rem; }
+
+  .map-layout { flex-direction: column-reverse; height: auto; border-top: none; }
+  #map { height: 60vw; min-height: 280px; max-height: 380px; }
+
+  #filter-panel { width: 100%; min-width: unset; border-right: none; border-top: 1px solid #e8e8e0; }
+  .filter-top h3 { display: none; }
+  .filter-toggle-btn { display: flex; }
+  .filters-collapsible { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 1rem 1.25rem; }
+  .filters-collapsible.hidden { display: none; }
+
+  .filter-toggle-btn {
+    width: 100%; display: flex; justify-content: space-between; align-items: center;
+    padding: 0.9rem 1.25rem; background: white; border: none; border-bottom: 1px solid #f0f0ea;
+    font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+    color: #aaa; cursor: pointer;
+  }
+  .filter-toggle-btn .arrow { transition: transform 0.2s; font-style: normal; }
+  .filter-toggle-btn.open .arrow { transform: rotate(180deg); }
+  .filters-collapsible { display: none; padding: 1rem 1.25rem; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .filters-collapsible.hidden { display: none; }
+  .filter-row { margin-bottom: 0; }
+  .filter-row.price-row { grid-column: 1 / -1; }
+
+  .resort-list { max-height: 38vh; }
+  .resort-card { padding: 0.7rem 1.25rem; min-height: 52px; }
+  .resort-card h3 { font-size: 0.88rem; }
+
+  .legend { padding: 0.6rem 1.25rem; }
+  footer { padding: 1.5rem 1.25rem; font-size: 0.78rem; }
 }
 </style>
 </head>
@@ -337,7 +404,7 @@ footer a { color: rgba(255,255,255,0.6); }
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#">Two <span>More <span>Skip <span>the <span>Last</span></a>
+  <a class="nav-logo" href="#">Two More <span>Skip the Last</span></a>
   <div class="nav-links">
     <a href="#how-it-works">How it works</a>
     <a href="#tiers">Price tiers</a>
@@ -436,7 +503,10 @@ footer a { color: rgba(255,255,255,0.6); }
   <div class="map-layout">
     <div id="filter-panel">
       <div class="filter-top">
-        <h3>Filters</h3>
+        <button class="filter-toggle-btn" id="filter-toggle" onclick="toggleFilters()">
+          <span>Filters</span><span class="arrow">▾</span>
+        </button>
+        <div class="filters-collapsible" id="filters-collapsible">
         <div class="filter-row">
           <label>Region</label>
           <select id="filter-region">
@@ -474,12 +544,13 @@ footer a { color: rgba(255,255,255,0.6); }
           <label>State</label>
           <select id="filter-state"><option value="">All states</option></select>
         </div>
-        <div class="filter-row">
+        <div class="filter-row price-row">
           <div class="range-label-row">
             <label>Max day ticket</label>
             <span class="range-val" id="range-label">$250</span>
           </div>
           <input type="range" id="filter-price" min="40" max="250" step="5" value="250" />
+        </div>
         </div>
       </div>
       <div class="legend">
@@ -760,6 +831,25 @@ function applyFilters() {
 document.getElementById('filter-price').addEventListener('input', applyFilters);
 
 renderList(resorts);
+
+function toggleFilters() {
+  const btn = document.getElementById('filter-toggle');
+  const panel = document.getElementById('filters-collapsible');
+  const isHidden = panel.classList.contains('hidden');
+  if (isHidden) {
+    panel.classList.remove('hidden');
+    btn.classList.add('open');
+  } else {
+    panel.classList.add('hidden');
+    btn.classList.remove('open');
+  }
+}
+
+// On mobile, start with filters collapsed
+if (window.innerWidth <= 700) {
+  const panel = document.getElementById('filters-collapsible');
+  if (panel) panel.classList.add('hidden');
+}
 </script>
 </body>
 </html>
