@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>US Ski Resort Affordability Map</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f4f4f0; color: #1a1a18; }
+  header { background: #1a1a18; color: white; padding: 1rem 1.5rem; display: flex; align-items: center; gap: 1rem; }
+  header h1 { font-size: 1.2rem; font-weight: 500; }
+  header p { font-size: 0.85rem; color: #aaa; }
+  .layout { display: flex; height: calc(100vh - 60px); }
+  #sidebar { width: 300px; min-width: 260px; background: white; border-right: 1px solid #e0e0d8; overflow-y: auto; display: flex; flex-direction: column; }
+  #map { flex: 1; }
+  .sidebar-header { padding: 1rem; border-bottom: 1px solid #e0e0d8; }
+  .sidebar-header h2 { font-size: 0.95rem; font-weight: 500; margin-bottom: 0.75rem; }
+  .filter-group { margin-bottom: 0.75rem; }
+  .filter-group label { font-size: 0.78rem; color: #666; display: block; margin-bottom: 4px; }
+  select, input[type=range] { width: 100%; }
+  select { padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; font-size: 0.85rem; background: white; }
+  .legend { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 0.5rem; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.75rem; color: #555; }
+  .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+  .resort-list { flex: 1; overflow-y: auto; }
+  .resort-card { padding: 0.75rem 1rem; border-bottom: 1px solid #f0f0ea; cursor: pointer; transition: background 0.15s; }
+  .resort-card:hover { background: #f8f8f4; }
+  .resort-card h3 { font-size: 0.9rem; font-weight: 500; }
+  .resort-card .meta { font-size: 0.78rem; color: #888; margin-top: 2px; }
+  .resort-card .price { font-size: 0.85rem; font-weight: 500; margin-top: 4px; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 500; margin-left: 6px; }
+  .badge-budget { background: #d4edda; color: #1a6e30; }
+  .badge-mid { background: #fff3cd; color: #7a5500; }
+  .badge-expensive { background: #fde8e8; color: #8b1a1a; }
+  .range-val { font-size: 0.8rem; color: #555; display: inline-block; margin-left: 6px; }
+  .no-results { padding: 1.5rem 1rem; color: #888; font-size: 0.85rem; text-align: center; }
+  @media (max-width: 600px) {
+    .layout { flex-direction: column; }
+    #sidebar { width: 100%; min-width: unset; height: 45vh; border-right: none; border-bottom: 1px solid #ddd; }
+    #map { height: 55vh; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>⛷️ US Ski Resort Affordability Map</h1>
+    <p>Compare day ticket prices across America's top ski areas</p>
+  </div>
+</header>
+
+<div class="layout">
+  <div id="sidebar">
+    <div class="sidebar-header">
+      <h2>Filters</h2>
+      <div class="filter-group">
+        <label>Region</label>
+        <select id="filter-region">
+          <option value="">All regions</option>
+          <option value="West">West</option>
+          <option value="Rockies">Rockies</option>
+          <option value="Northeast">Northeast</option>
+          <option value="Midwest">Midwest</option>
+          <option value="Southeast">Southeast</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Max day ticket: <span class="range-val" id="range-label">$250</span></label>
+        <input type="range" id="filter-price" min="50" max="250" step="10" value="250" />
+      </div>
+      <div class="filter-group">
+        <label>Affordability tier</label>
+        <select id="filter-tier">
+          <option value="">All tiers</option>
+          <option value="Budget">💚 Budget (under $100)</option>
+          <option value="Mid-Range">🟡 Mid-Range ($100–$160)</option>
+          <option value="Expensive">🔴 Expensive ($160+)</option>
+        </select>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><span class="dot" style="background:#2d9e5f"></span>Budget</div>
+        <div class="legend-item"><span class="dot" style="background:#e6a817"></span>Mid-Range</div>
+        <div class="legend-item"><span class="dot" style="background:#d84040"></span>Expensive</div>
+      </div>
+    </div>
+    <div class="resort-list" id="resort-list"></div>
+  </div>
+  <div id="map"></div>
+</div>
+
+<script>
+const resorts = [
+  { name: "Arapahoe Basin", state: "CO", region: "Rockies", lat: 39.642, lng: -105.872, dayTicket: 109, vertical: 2530, trails: 147, pass: "Ikon", notes: "Late season skiing into June. One of the best value resorts in CO." },
+  { name: "Loveland Ski Area", state: "CO", region: "Rockies", lat: 39.680, lng: -105.899, dayTicket: 89, vertical: 2410, trails: 93, pass: "Ikon", notes: "Hidden gem near Denver. Great powder and no resort fees." },
+  { name: "Ski Cooper", state: "CO", region: "Rockies", lat: 39.358, lng: -106.347, dayTicket: 79, vertical: 1200, trails: 61, pass: "Indy", notes: "Affordable family-run mountain in the Rockies." },
+  { name: "Monarch Mountain", state: "CO", region: "Rockies", lat: 38.509, lng: -106.330, dayTicket: 89, vertical: 1160, trails: 63, pass: "Indy", notes: "No lift lines, no resort fees. True hidden gem." },
+  { name: "Sunlight Mountain", state: "CO", region: "Rockies", lat: 39.467, lng: -107.220, dayTicket: 75, vertical: 2010, trails: 72, pass: "None", notes: "One of the cheapest resorts in Colorado." },
+  { name: "Breckenridge", state: "CO", region: "Rockies", lat: 39.481, lng: -106.066, dayTicket: 209, vertical: 3398, trails: 187, pass: "Epic", notes: "World-class terrain. Premium pricing to match." },
+  { name: "Vail", state: "CO", region: "Rockies", lat: 39.608, lng: -106.356, dayTicket: 229, vertical: 3450, trails: 195, pass: "Epic", notes: "Iconic resort. One of the most expensive in the US." },
+  { name: "Steamboat Springs", state: "CO", region: "Rockies", lat: 40.456, lng: -106.802, dayTicket: 189, vertical: 3668, trails: 169, pass: "Ikon", notes: "Famous champagne powder. Mid-to-high pricing." },
+  { name: "Keystone", state: "CO", region: "Rockies", lat: 39.606, lng: -105.940, dayTicket: 179, vertical: 3128, trails: 135, pass: "Epic", notes: "Night skiing capital of Colorado." },
+  { name: "Wolf Creek", state: "CO", region: "Rockies", lat: 37.474, lng: -106.795, dayTicket: 99, vertical: 1604, trails: 77, pass: "None", notes: "Highest average snowfall in CO. Great value." },
+  { name: "Taos Ski Valley", state: "NM", region: "Rockies", lat: 36.595, lng: -105.447, dayTicket: 149, vertical: 2612, trails: 110, pass: "Ikon", notes: "World-class steep terrain at reasonable prices." },
+  { name: "Ski Santa Fe", state: "NM", region: "Rockies", lat: 35.792, lng: -105.826, dayTicket: 109, vertical: 1725, trails: 86, pass: "Indy", notes: "High altitude, short drive from Santa Fe." },
+  { name: "Jackson Hole", state: "WY", region: "Rockies", lat: 43.587, lng: -110.827, dayTicket: 219, vertical: 4139, trails: 131, pass: "Ikon", notes: "Best expert terrain in the US. Premium pricing." },
+  { name: "Snow King", state: "WY", region: "Rockies", lat: 43.472, lng: -110.768, dayTicket: 89, vertical: 1571, trails: 45, pass: "None", notes: "The locals' mountain. Right in Jackson town." },
+  { name: "Big Sky Resort", state: "MT", region: "West", lat: 45.286, lng: -111.401, dayTicket: 199, vertical: 4350, trails: 300, pass: "Ikon", notes: "Biggest ski area in the US by acreage." },
+  { name: "Whitefish Mountain", state: "MT", region: "West", lat: 48.481, lng: -114.360, dayTicket: 109, vertical: 2353, trails: 105, pass: "None", notes: "Montana gem. Great value and stunning scenery." },
+  { name: "Schweitzer Mountain", state: "ID", region: "West", lat: 48.370, lng: -116.620, dayTicket: 99, vertical: 2400, trails: 92, pass: "Ikon", notes: "Hidden gem in northern Idaho. Often overlooked." },
+  { name: "Bogus Basin", state: "ID", region: "West", lat: 43.762, lng: -116.094, dayTicket: 69, vertical: 1800, trails: 91, pass: "Indy", notes: "Cheapest skiing near a major city in the West." },
+  { name: "Mammoth Mountain", state: "CA", region: "West", lat: 37.631, lng: -119.032, dayTicket: 199, vertical: 3100, trails: 150, pass: "Ikon", notes: "Premier California resort. Long season." },
+  { name: "Bear Mountain", state: "CA", region: "West", lat: 34.238, lng: -116.853, dayTicket: 79, vertical: 1665, trails: 26, pass: "Epic", notes: "Affordable SoCal skiing close to LA." },
+  { name: "Crystal Mountain", state: "WA", region: "West", lat: 46.930, lng: -121.474, dayTicket: 129, vertical: 3100, trails: 57, pass: "Ikon", notes: "Best skiing in the Pacific Northwest." },
+  { name: "Mt. Bachelor", state: "OR", region: "West", lat: 43.979, lng: -121.689, dayTicket: 139, vertical: 3365, trails: 101, pass: "Ikon", notes: "Volcanic mountain with reliable snow." },
+  { name: "Stowe Mountain", state: "VT", region: "Northeast", lat: 44.530, lng: -72.782, dayTicket: 189, vertical: 2360, trails: 116, pass: "Epic", notes: "Vermont's most iconic resort. Premium pricing." },
+  { name: "Sugarbush", state: "VT", region: "Northeast", lat: 44.134, lng: -72.912, dayTicket: 149, vertical: 2600, trails: 111, pass: "Ikon", notes: "Classic Vermont charm with great terrain." },
+  { name: "Mad River Glen", state: "VT", region: "Northeast", lat: 44.198, lng: -72.924, dayTicket: 99, vertical: 2037, trails: 52, pass: "None", notes: "Old-school Vermont. No snowmaking, skiers only." },
+  { name: "Bolton Valley", state: "VT", region: "Northeast", lat: 44.422, lng: -72.863, dayTicket: 79, vertical: 1704, trails: 71, pass: "Indy", notes: "Best value resort in Vermont." },
+  { name: "Loon Mountain", state: "NH", region: "Northeast", lat: 44.040, lng: -71.623, dayTicket: 129, vertical: 2100, trails: 61, pass: "Ikon", notes: "Popular NH resort. Good for families." },
+  { name: "Waterville Valley", state: "NH", region: "Northeast", lat: 43.972, lng: -71.510, dayTicket: 99, vertical: 2020, trails: 52, pass: "Indy", notes: "Family-friendly with great value season passes." },
+  { name: "Sunday River", state: "ME", region: "Northeast", lat: 44.471, lng: -70.860, dayTicket: 139, vertical: 2340, trails: 135, pass: "Ikon", notes: "Best resort in Maine. Reliable snowmaking." },
+  { name: "Boyne Mountain", state: "MI", region: "Midwest", lat: 45.166, lng: -84.921, dayTicket: 79, vertical: 500, trails: 60, pass: "Ikon", notes: "Top Midwest resort. Flat terrain but fun." },
+  { name: "Lutsen Mountains", state: "MN", region: "Midwest", lat: 47.646, lng: -90.710, dayTicket: 69, vertical: 1088, trails: 95, pass: "Indy", notes: "Biggest vertical in the Midwest." },
+  { name: "Ski Brule", state: "MI", region: "Midwest", lat: 46.028, lng: -89.000, dayTicket: 55, vertical: 500, trails: 18, pass: "None", notes: "Budget-friendly UP Michigan skiing." },
+  { name: "Ober Mountain", state: "TN", region: "Southeast", lat: 35.714, lng: -83.533, dayTicket: 59, vertical: 600, trails: 10, pass: "None", notes: "Southernmost ski area on this list. Great for beginners." },
+  { name: "Beech Mountain", state: "NC", region: "Southeast", lat: 36.187, lng: -81.896, dayTicket: 79, vertical: 830, trails: 17, pass: "None", notes: "Highest ski area in the eastern US." },
+  { name: "Winterplace", state: "WV", region: "Southeast", lat: 37.578, lng: -81.124, dayTicket: 69, vertical: 603, trails: 28, pass: "None", notes: "Affordable Mid-Atlantic skiing." },
+];
+
+function getTier(price) {
+  if (price < 100) return "Budget";
+  if (price <= 160) return "Mid-Range";
+  return "Expensive";
+}
+function getColor(price) {
+  if (price < 100) return "#2d9e5f";
+  if (price <= 160) return "#e6a817";
+  return "#d84040";
+}
+function getBadgeClass(tier) {
+  if (tier === "Budget") return "badge-budget";
+  if (tier === "Mid-Range") return "badge-mid";
+  return "badge-expensive";
+}
+
+const map = L.map('map').setView([39.5, -98.35], 4);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap contributors'
+}).addTo(map);
+
+let markers = {};
+
+function makeIcon(price) {
+  const color = getColor(price);
+  return L.divIcon({
+    className: '',
+    html: `<div style="width:16px;height:16px;border-radius:50%;background:${color};border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,0.3)"></div>`,
+    iconSize: [16, 16],
+    iconAnchor: [8, 8]
+  });
+}
+
+resorts.forEach(r => {
+  const tier = getTier(r.dayTicket);
+  const marker = L.marker([r.lat, r.lng], { icon: makeIcon(r.dayTicket) })
+    .addTo(map)
+    .bindPopup(`
+      <strong style="font-size:1rem">${r.name}</strong><br>
+      <span style="color:#666;font-size:0.85rem">${r.state} · ${r.region}</span><br><br>
+      <strong>Day ticket:</strong> $${r.dayTicket}<br>
+      <strong>Tier:</strong> ${tier}<br>
+      <strong>Vertical drop:</strong> ${r.vertical.toLocaleString()} ft<br>
+      <strong>Trails:</strong> ${r.trails}<br>
+      <strong>Pass:</strong> ${r.pass}<br><br>
+      <em style="color:#555;font-size:0.82rem">${r.notes}</em>
+    `);
+  markers[r.name] = marker;
+});
+
+function renderList(filtered) {
+  const list = document.getElementById('resort-list');
+  if (filtered.length === 0) {
+    list.innerHTML = '<div class="no-results">No resorts match your filters.</div>';
+    return;
+  }
+  const sorted = [...filtered].sort((a, b) => a.dayTicket - b.dayTicket);
+  list.innerHTML = sorted.map(r => {
+    const tier = getTier(r.dayTicket);
+    return `<div class="resort-card" onclick="flyTo('${r.name}')">
+      <h3>${r.name} <span class="badge ${getBadgeClass(tier)}">${tier}</span></h3>
+      <div class="meta">${r.state} · ${r.vertical.toLocaleString()} ft vertical · ${r.trails} trails</div>
+      <div class="price">$${r.dayTicket}/day · Pass: ${r.pass}</div>
+    </div>`;
+  }).join('');
+}
+
+function flyTo(name) {
+  const r = resorts.find(x => x.name === name);
+  if (r) {
+    map.flyTo([r.lat, r.lng], 9);
+    markers[name].openPopup();
+  }
+}
+window.flyTo = flyTo;
+
+function applyFilters() {
+  const region = document.getElementById('filter-region').value;
+  const maxPrice = parseInt(document.getElementById('filter-price').value);
+  const tier = document.getElementById('filter-tier').value;
+  document.getElementById('range-label').textContent = '$' + maxPrice;
+
+  const filtered = resorts.filter(r => {
+    if (region && r.region !== region) return false;
+    if (r.dayTicket > maxPrice) return false;
+    if (tier && getTier(r.dayTicket) !== tier) return false;
+    return true;
+  });
+
+  Object.values(markers).forEach(m => map.removeLayer(m));
+  resorts.forEach(r => {
+    const show = filtered.includes(r);
+    if (show) markers[r.name].addTo(map);
+  });
+
+  renderList(filtered);
+}
+
+document.getElementById('filter-region').addEventListener('change', applyFilters);
+document.getElementById('filter-price').addEventListener('input', applyFilters);
+document.getElementById('filter-tier').addEventListener('change', applyFilters);
+
+renderList(resorts);
+</script>
+</body>
+</html>
