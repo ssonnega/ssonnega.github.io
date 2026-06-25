@@ -8,8 +8,51 @@
     "dayTicket": 109,
     "vertical": 2530,
     "trails": 147,
-    "pass": "Ikon",
-    "notes": "Late season skiing into June. One of the best values in Colorado."
+    "pass": "Ikon"
+  },
+  {
+    "name": "Loveland Ski Area",
+    "state": "CO",
+    "region": "Rockies",
+    "lat": 39.68,
+    "lng": -105.899,
+    "dayTicket": 89,
+    "vertical": 2410,
+    "trails": 93,
+    "pass": "Ikon"
+  },
+  {
+    "name": "Ski Cooper",
+    "state": "CO",
+    "region": "Rockies",
+    "lat": 39.358,
+    "lng": -106.347,
+    "dayTicket": 79,
+    "vertical": 1200,
+    "trails": 61,
+    "pass": "Indy"
+  },
+  {
+    "name": "Monarch Mountain",
+    "state": "CO",
+    "region": "Rockies",
+    "lat": 38.509,
+    "lng": -106.33,
+    "dayTicket": 89,
+    "vertical": 1160,
+    "trails": 63,
+    "pass": "Indy"
+  },
+  {
+    "name": "Sunlight Mountain",
+    "state": "CO",
+    "region": "Rockies",
+    "lat": 39.467,
+    "lng": -107.22,
+    "dayTicket": 75,
+    "vertical": 2010,
+    "trails": 72,
+    "pass": "Independent"
   },
   {
     "name": "Breckenridge",
@@ -20,8 +63,7 @@
     "dayTicket": 209,
     "vertical": 3398,
     "trails": 187,
-    "pass": "Epic",
-    "notes": "World-famous resort with five peaks."
+    "pass": "Epic"
   },
   {
     "name": "Vail",
@@ -32,8 +74,51 @@
     "dayTicket": 229,
     "vertical": 3450,
     "trails": 195,
-    "pass": "Epic",
-    "notes": "Legendary back bowls and massive terrain."
+    "pass": "Epic"
+  },
+  {
+    "name": "Steamboat",
+    "state": "CO",
+    "region": "Rockies",
+    "lat": 40.456,
+    "lng": -106.802,
+    "dayTicket": 189,
+    "vertical": 3668,
+    "trails": 169,
+    "pass": "Ikon"
+  },
+  {
+    "name": "Keystone",
+    "state": "CO",
+    "region": "Rockies",
+    "lat": 39.606,
+    "lng": -105.94,
+    "dayTicket": 179,
+    "vertical": 3128,
+    "trails": 135,
+    "pass": "Epic"
+  },
+  {
+    "name": "Wolf Creek",
+    "state": "CO",
+    "region": "Rockies",
+    "lat": 37.474,
+    "lng": -106.795,
+    "dayTicket": 99,
+    "vertical": 1604,
+    "trails": 77,
+    "pass": "Independent"
+  },
+  {
+    "name": "Taos Ski Valley",
+    "state": "NM",
+    "region": "Rockies",
+    "lat": 36.595,
+    "lng": -105.447,
+    "dayTicket": 149,
+    "vertical": 2612,
+    "trails": 110,
+    "pass": "Ikon"
   },
   {
     "name": "Jackson Hole",
@@ -44,8 +129,7 @@
     "dayTicket": 219,
     "vertical": 4139,
     "trails": 131,
-    "pass": "Ikon",
-    "notes": "Iconic expert terrain and steep skiing."
+    "pass": "Ikon"
   },
   {
     "name": "Big Sky",
@@ -56,8 +140,40 @@
     "dayTicket": 199,
     "vertical": 4350,
     "trails": 300,
-    "pass": "Ikon",
-    "notes": "One of the largest ski resorts in North America."
+    "pass": "Ikon"
+  },
+  {
+    "name": "Whitefish",
+    "state": "MT",
+    "region": "West",
+    "lat": 48.481,
+    "lng": -114.36,
+    "dayTicket": 109,
+    "vertical": 2353,
+    "trails": 105,
+    "pass": "Independent"
+  },
+  {
+    "name": "Schweitzer",
+    "state": "ID",
+    "region": "West",
+    "lat": 48.37,
+    "lng": -116.62,
+    "dayTicket": 99,
+    "vertical": 2400,
+    "trails": 92,
+    "pass": "Ikon"
+  },
+  {
+    "name": "Bogus Basin",
+    "state": "ID",
+    "region": "West",
+    "lat": 43.762,
+    "lng": -116.094,
+    "dayTicket": 69,
+    "vertical": 1800,
+    "trails": 91,
+    "pass": "Indy"
   },
   {
     "name": "Mammoth Mountain",
@@ -68,20 +184,40 @@
     "dayTicket": 199,
     "vertical": 3100,
     "trails": 150,
-    "pass": "Ikon",
-    "notes": "Long season with reliable snowfall."
+    "pass": "Ikon"
   },
   {
-    "name": "Whitefish Mountain",
-    "state": "MT",
+    "name": "Bear Mountain",
+    "state": "CA",
     "region": "West",
-    "lat": 48.481,
-    "lng": -114.360,
-    "dayTicket": 109,
-    "vertical": 2353,
-    "trails": 105,
-    "pass": "Independent",
-    "notes": "Great value and incredible views."
+    "lat": 34.238,
+    "lng": -116.853,
+    "dayTicket": 79,
+    "vertical": 1665,
+    "trails": 26,
+    "pass": "Epic"
+  },
+  {
+    "name": "Crystal Mountain",
+    "state": "WA",
+    "region": "West",
+    "lat": 46.93,
+    "lng": -121.474,
+    "dayTicket": 129,
+    "vertical": 3100,
+    "trails": 57,
+    "pass": "Ikon"
+  },
+  {
+    "name": "Mt. Bachelor",
+    "state": "OR",
+    "region": "West",
+    "lat": 43.979,
+    "lng": -121.689,
+    "dayTicket": 139,
+    "vertical": 3365,
+    "trails": 101,
+    "pass": "Ikon"
   },
   {
     "name": "Stowe",
@@ -92,8 +228,7 @@
     "dayTicket": 189,
     "vertical": 2360,
     "trails": 116,
-    "pass": "Epic",
-    "notes": "One of the premier ski resorts in New England."
+    "pass": "Epic"
   },
   {
     "name": "Sugarbush",
@@ -104,8 +239,73 @@
     "dayTicket": 149,
     "vertical": 2600,
     "trails": 111,
-    "pass": "Ikon",
-    "notes": "Classic Vermont skiing."
+    "pass": "Ikon"
+  },
+  {
+    "name": "Mad River Glen",
+    "state": "VT",
+    "region": "Northeast",
+    "lat": 44.198,
+    "lng": -72.924,
+    "dayTicket": 99,
+    "vertical": 2037,
+    "trails": 52,
+    "pass": "Independent"
+  },
+  {
+    "name": "Bolton Valley",
+    "state": "VT",
+    "region": "Northeast",
+    "lat": 44.422,
+    "lng": -72.863,
+    "dayTicket": 79,
+    "vertical": 1704,
+    "trails": 71,
+    "pass": "Indy"
+  },
+  {
+    "name": "Loon Mountain",
+    "state": "NH",
+    "region": "Northeast",
+    "lat": 44.04,
+    "lng": -71.623,
+    "dayTicket": 129,
+    "vertical": 2100,
+    "trails": 61,
+    "pass": "Ikon"
+  },
+  {
+    "name": "Waterville Valley",
+    "state": "NH",
+    "region": "Northeast",
+    "lat": 43.972,
+    "lng": -71.51,
+    "dayTicket": 99,
+    "vertical": 2020,
+    "trails": 52,
+    "pass": "Indy"
+  },
+  {
+    "name": "Sunday River",
+    "state": "ME",
+    "region": "Northeast",
+    "lat": 44.471,
+    "lng": -70.86,
+    "dayTicket": 139,
+    "vertical": 2340,
+    "trails": 135,
+    "pass": "Ikon"
+  },
+  {
+    "name": "Boyne Mountain",
+    "state": "MI",
+    "region": "Midwest",
+    "lat": 45.166,
+    "lng": -84.921,
+    "dayTicket": 79,
+    "vertical": 500,
+    "trails": 60,
+    "pass": "Ikon"
   },
   {
     "name": "Lutsen Mountains",
@@ -116,7 +316,50 @@
     "dayTicket": 69,
     "vertical": 1088,
     "trails": 95,
-    "pass": "Indy",
-    "notes": "Largest vertical drop in the Midwest."
+    "pass": "Indy"
+  },
+  {
+    "name": "Ski Brule",
+    "state": "MI",
+    "region": "Midwest",
+    "lat": 46.028,
+    "lng": -89.0,
+    "dayTicket": 55,
+    "vertical": 500,
+    "trails": 18,
+    "pass": "Independent"
+  },
+  {
+    "name": "Ober Mountain",
+    "state": "TN",
+    "region": "Southeast",
+    "lat": 35.714,
+    "lng": -83.533,
+    "dayTicket": 59,
+    "vertical": 600,
+    "trails": 10,
+    "pass": "Independent"
+  },
+  {
+    "name": "Beech Mountain",
+    "state": "NC",
+    "region": "Southeast",
+    "lat": 36.187,
+    "lng": -81.896,
+    "dayTicket": 79,
+    "vertical": 830,
+    "trails": 17,
+    "pass": "Independent"
+  },
+  {
+    "name": "Winterplace",
+    "state": "WV",
+    "region": "Southeast",
+    "lat": 37.578,
+    "lng": -81.124,
+    "dayTicket": 69,
+    "vertical": 603,
+    "trails": 28,
+    "pass": "Independent"
   }
 ]
