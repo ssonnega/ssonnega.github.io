@@ -278,15 +278,7 @@ nav {
 }
 .filter-top { padding: 1.25rem; border-bottom: 1px solid #f0f0ea; flex-shrink: 0; }
 .filter-top h3 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #aaa; margin-bottom: 1rem; }
-.filter-toggle-btn {
-  display: none;
-  width: 100%; justify-content: space-between; align-items: center;
-  padding: 0.9rem 1.25rem; background: white; border: none; border-bottom: 1px solid #f0f0ea;
-  font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
-  color: #888; cursor: pointer; font-family: inherit;
-}
-.filter-toggle-btn .arrow { transition: transform 0.2s; }
-.filter-toggle-btn.open .arrow { transform: rotate(180deg); display: inline-block; }
+.filter-toggle-btn { display: none; }
 .filters-collapsible { padding: 1rem 1.25rem; }
 .filters-collapsible.hidden { display: none; }
 .filter-row { margin-bottom: 0.9rem; }
@@ -373,10 +365,12 @@ footer a { color: rgba(255,255,255,0.6); }
   #map { height: 60vw; min-height: 280px; max-height: 380px; }
 
   #filter-panel { width: 100%; min-width: unset; border-right: none; border-top: 1px solid #e8e8e0; }
-  .filter-top h3 { display: none; }
-  .filter-toggle-btn { display: flex; }
-  .filters-collapsible { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 1rem 1.25rem; }
-  .filters-collapsible.hidden { display: none; }
+  .filter-top { padding: 0; }
+  .filter-top h3 { padding: 0.75rem 1.25rem 0.5rem; margin-bottom: 0; }
+  .filter-toggle-btn { display: none; }
+  .filters-collapsible { display: grid !important; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0.75rem 1.25rem 1rem; }
+  .filters-collapsible.hidden { display: grid !important; }
+  .filter-row.price-row { grid-column: 1 / -1; }
 
   .filter-toggle-btn {
     width: 100%; display: flex; justify-content: space-between; align-items: center;
@@ -845,11 +839,7 @@ function toggleFilters() {
   }
 }
 
-// On mobile, start with filters collapsed
-if (window.innerWidth <= 700) {
-  const panel = document.getElementById('filters-collapsible');
-  if (panel) panel.classList.add('hidden');
-}
+// Filters always visible on all screen sizes
 </script>
 </body>
 </html>
