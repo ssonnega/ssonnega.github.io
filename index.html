@@ -48,7 +48,7 @@
 
 <header>
   <div>
-    <h1>⛷️ US Ski Resort Affordability Map</h1>
+    <h1>US Ski Resort Affordability Map</h1>
     <p>Compare day ticket prices across America's top ski areas</p>
   </div>
 </header>
@@ -59,7 +59,7 @@
       <h2>Filters</h2>
       <div class="filter-group">
         <label>Search Resorts</label>
-        <input type="text" id="search-input" placeholder="Search by resort name..." />
+        <input type="text" id="search-input" placeholder="Search by resort name, state, or pass..." />
       </div>
       <div class="filter-group">
         <label>Region</label>
@@ -230,7 +230,7 @@ function applyFilters() {
   document.getElementById('range-label').textContent = '$' + maxPrice;
 
   const filtered = resorts.filter(r => {
-    if (search && !r.name.toLowerCase().includes(search)) return false;
+    if (search && !(r.name.toLowerCase().includes(search) || r.state.toLowerCase().includes(search) || r.pass.toLowerCase().includes(search))) return false;
     if (region && r.region !== region) return false;
     if (pass && r.pass !== pass) return false;
     if (r.dayTicket > maxPrice) return false;
