@@ -1,0 +1,122 @@
+[
+  {
+    "name": "Arapahoe Basin",
+    "state": "CO",
+    "region": "Rockies",
+    "lat": 39.642,
+    "lng": -105.872,
+    "dayTicket": 109,
+    "vertical": 2530,
+    "trails": 147,
+    "pass": "Ikon",
+    "notes": "Late season skiing into June. One of the best values in Colorado."
+  },
+  {
+    "name": "Breckenridge",
+    "state": "CO",
+    "region": "Rockies",
+    "lat": 39.481,
+    "lng": -106.066,
+    "dayTicket": 209,
+    "vertical": 3398,
+    "trails": 187,
+    "pass": "Epic",
+    "notes": "World-famous resort with five peaks."
+  },
+  {
+    "name": "Vail",
+    "state": "CO",
+    "region": "Rockies",
+    "lat": 39.608,
+    "lng": -106.356,
+    "dayTicket": 229,
+    "vertical": 3450,
+    "trails": 195,
+    "pass": "Epic",
+    "notes": "Legendary back bowls and massive terrain."
+  },
+  {
+    "name": "Jackson Hole",
+    "state": "WY",
+    "region": "Rockies",
+    "lat": 43.587,
+    "lng": -110.827,
+    "dayTicket": 219,
+    "vertical": 4139,
+    "trails": 131,
+    "pass": "Ikon",
+    "notes": "Iconic expert terrain and steep skiing."
+  },
+  {
+    "name": "Big Sky",
+    "state": "MT",
+    "region": "West",
+    "lat": 45.286,
+    "lng": -111.401,
+    "dayTicket": 199,
+    "vertical": 4350,
+    "trails": 300,
+    "pass": "Ikon",
+    "notes": "One of the largest ski resorts in North America."
+  },
+  {
+    "name": "Mammoth Mountain",
+    "state": "CA",
+    "region": "West",
+    "lat": 37.631,
+    "lng": -119.032,
+    "dayTicket": 199,
+    "vertical": 3100,
+    "trails": 150,
+    "pass": "Ikon",
+    "notes": "Long season with reliable snowfall."
+  },
+  {
+    "name": "Whitefish Mountain",
+    "state": "MT",
+    "region": "West",
+    "lat": 48.481,
+    "lng": -114.360,
+    "dayTicket": 109,
+    "vertical": 2353,
+    "trails": 105,
+    "pass": "Independent",
+    "notes": "Great value and incredible views."
+  },
+  {
+    "name": "Stowe",
+    "state": "VT",
+    "region": "Northeast",
+    "lat": 44.53,
+    "lng": -72.782,
+    "dayTicket": 189,
+    "vertical": 2360,
+    "trails": 116,
+    "pass": "Epic",
+    "notes": "One of the premier ski resorts in New England."
+  },
+  {
+    "name": "Sugarbush",
+    "state": "VT",
+    "region": "Northeast",
+    "lat": 44.134,
+    "lng": -72.912,
+    "dayTicket": 149,
+    "vertical": 2600,
+    "trails": 111,
+    "pass": "Ikon",
+    "notes": "Classic Vermont skiing."
+  },
+  {
+    "name": "Lutsen Mountains",
+    "state": "MN",
+    "region": "Midwest",
+    "lat": 47.646,
+    "lng": -90.71,
+    "dayTicket": 69,
+    "vertical": 1088,
+    "trails": 95,
+    "pass": "Indy",
+    "notes": "Largest vertical drop in the Midwest."
+  }
+]
