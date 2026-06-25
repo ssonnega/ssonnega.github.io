@@ -1,0 +1,405 @@
+/* ==========================
+   Reset
+========================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: #f5f7fa;
+    color: #222;
+    line-height: 1.6;
+}
+
+/* ==========================
+   Navigation
+========================== */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 8%;
+    background: rgba(255,255,255,.95);
+    backdrop-filter: blur(10px);
+
+    box-shadow: 0 2px 12px rgba(0,0,0,.08);
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    color: #222;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+nav a:hover {
+    color: #0d6efd;
+}
+
+/* ==========================
+   Hero
+========================== */
+
+.hero {
+
+    height: 85vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            rgba(20,35,60,.55),
+            rgba(20,35,60,.55)
+        ),
+        url("https://images.unsplash.com/photo-1517825738774-7de9363ef735?auto=format&fit=crop&w=1800&q=80");
+
+    background-size: cover;
+    background-position: center;
+
+    color: white;
+}
+
+.hero-overlay {
+
+    max-width: 750px;
+    padding: 40px;
+
+}
+
+.hero h1 {
+
+    font-size: 3.8rem;
+    margin-bottom: 25px;
+
+}
+
+.hero p {
+
+    font-size: 1.25rem;
+    margin-bottom: 40px;
+
+}
+
+.primary-button {
+
+    display: inline-block;
+
+    padding: 16px 36px;
+
+    background: white;
+
+    color: #0d6efd;
+
+    text-decoration: none;
+
+    border-radius: 40px;
+
+    font-weight: bold;
+
+    transition: .3s;
+
+}
+
+.primary-button:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 12px 25px rgba(0,0,0,.25);
+
+}
+
+/* ==========================
+   Stats
+========================== */
+
+.stats {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 25px;
+
+    padding: 70px 8%;
+
+    flex-wrap: wrap;
+
+}
+
+.stat-card {
+
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    width: 240px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.stat-card h2 {
+
+    color: #0d6efd;
+
+    margin-bottom: 10px;
+
+}
+
+/* ==========================
+   Filters
+========================== */
+
+.filters {
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    padding: 0 8% 60px;
+
+}
+
+.filters h2 {
+
+    margin-bottom: 30px;
+
+    text-align: center;
+
+}
+
+.filters input,
+.filters select {
+
+    width: 100%;
+
+    padding: 15px;
+
+    margin-bottom: 20px;
+
+    border-radius: 12px;
+
+    border: 1px solid #ddd;
+
+    font-size: 1rem;
+
+}
+
+.filter-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(3,1fr);
+
+    gap: 20px;
+
+}
+
+/* ==========================
+   Map
+========================== */
+
+.map-section {
+
+    padding: 0 8% 80px;
+
+}
+
+#map {
+
+    height: 650px;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    box-shadow: 0 12px 35px rgba(0,0,0,.12);
+
+}
+
+/* ==========================
+   Resorts
+========================== */
+
+.resorts {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 80px 8%;
+
+}
+
+.resorts h2 {
+
+    margin-bottom: 30px;
+
+}
+
+#resort-list {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+
+    gap: 24px;
+
+}
+
+.resort-card {
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    box-shadow: 0 8px 24px rgba(0,0,0,.08);
+
+    transition: .25s;
+
+}
+
+.resort-card:hover {
+
+    transform: translateY(-6px);
+
+}
+
+/* ==========================
+   About
+========================== */
+
+.about {
+
+    background: white;
+
+    padding: 90px 8%;
+
+    text-align: center;
+
+}
+
+.about h2 {
+
+    margin-bottom: 25px;
+
+}
+
+.about p {
+
+    max-width: 800px;
+
+    margin: auto;
+
+    font-size: 1.1rem;
+
+}
+
+/* ==========================
+   Footer
+========================== */
+
+footer {
+
+    padding: 35px;
+
+    background: #17324d;
+
+    color: white;
+
+    text-align: center;
+
+}
+
+/* ==========================
+   Mobile
+========================== */
+
+@media (max-width:900px) {
+
+    .site-header {
+
+        flex-direction: column;
+
+        gap: 15px;
+
+        padding: 20px;
+
+    }
+
+    nav {
+
+        gap: 15px;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+    }
+
+    .hero {
+
+        height: auto;
+
+        padding: 120px 20px;
+
+    }
+
+    .hero h1 {
+
+        font-size: 2.5rem;
+
+    }
+
+    .hero p {
+
+        font-size: 1rem;
+
+    }
+
+    .filter-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    #map {
+
+        height: 450px;
+
+    }
+
+}
