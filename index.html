@@ -19,8 +19,7 @@
   .sidebar-header h2 { font-size: 0.95rem; font-weight: 500; margin-bottom: 0.75rem; }
   .filter-group { margin-bottom: 0.75rem; }
   .filter-group label { font-size: 0.78rem; color: #666; display: block; margin-bottom: 4px; }
-  select, input[type=range], input[type=text] { width: 100%; }
-  input[type=text] { padding: 8px; border: 1px solid #ddd; border-radius: 6px; font-size: 0.85rem; }
+  select, input[type=range] { width: 100%; }
   select { padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; font-size: 0.85rem; background: white; }
   .legend { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 0.5rem; }
   .legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.75rem; color: #555; }
@@ -37,6 +36,40 @@
   .badge-expensive { background: #fde8e8; color: #8b1a1a; }
   .range-val { font-size: 0.8rem; color: #555; display: inline-block; margin-left: 6px; }
   .no-results { padding: 1.5rem 1rem; color: #888; font-size: 0.85rem; text-align: center; }
+  
+  .hero {
+    background: linear-gradient(135deg,#12324a,#275d7d);
+    color: white;
+    text-align: center;
+    padding: 5rem 1.5rem;
+  }
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+  .hero p {
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,.92);
+  }
+  .hero-btn{
+    display:inline-block;
+    background:white;
+    color:#12324a;
+    padding:.9rem 1.5rem;
+    border-radius:999px;
+    text-decoration:none;
+    font-weight:700;
+  }
+  @media (max-width:600px){
+    .hero{padding:3rem 1rem;}
+    .hero h1{font-size:2rem;}
+    .hero p{font-size:1rem;}
+  }
+
   @media (max-width: 600px) {
     .layout { flex-direction: column; }
     #sidebar { width: 100%; min-width: unset; height: 45vh; border-right: none; border-bottom: 1px solid #ddd; }
@@ -48,19 +81,23 @@
 
 <header>
   <div>
-    <h1>US Ski Resort Affordability Map</h1>
-    <p>Compare day ticket prices across America's top ski areas</p>
+    <h1>⛷️ Ski Smart</h1>
   </div>
 </header>
 
-<div class="layout">
+<section class="hero">
+  <h1>Find Your Perfect Ski Resort</h1>
+  <p>
+    Planning your next ski trip doesn't have to be stressful. Compare lift ticket prices,
+    ski pass access, terrain, and resort information from across the United States—all in one place.
+  </p>
+  <a class="hero-btn" href="#map-section">Explore the Map ↓</a>
+</section>
+
+<div class="layout" id="map-section">
   <div id="sidebar">
     <div class="sidebar-header">
       <h2>Filters</h2>
-      <div class="filter-group">
-        <label>Search Resorts</label>
-        <input type="text" id="search-input" placeholder="Search by resort name, state, or pass..." />
-      </div>
       <div class="filter-group">
         <label>Region</label>
         <select id="filter-region">
@@ -70,16 +107,6 @@
           <option value="Northeast">Northeast</option>
           <option value="Midwest">Midwest</option>
           <option value="Southeast">Southeast</option>
-        </select>
-      </div>
-      <div class="filter-group">
-        <label>Ski Pass</label>
-        <select id="filter-pass">
-          <option value="">All Passes</option>
-          <option value="Epic">Epic</option>
-          <option value="Ikon">Ikon</option>
-          <option value="Indy">Indy</option>
-          <option value="None">Independent</option>
         </select>
       </div>
       <div class="filter-group">
@@ -222,17 +249,13 @@ function flyTo(name) {
 window.flyTo = flyTo;
 
 function applyFilters() {
-  const search = document.getElementById('search-input').value.toLowerCase();
   const region = document.getElementById('filter-region').value;
-  const pass = document.getElementById('filter-pass').value;
   const maxPrice = parseInt(document.getElementById('filter-price').value);
   const tier = document.getElementById('filter-tier').value;
   document.getElementById('range-label').textContent = '$' + maxPrice;
 
   const filtered = resorts.filter(r => {
-    if (search && !(r.name.toLowerCase().includes(search) || r.state.toLowerCase().includes(search) || r.pass.toLowerCase().includes(search))) return false;
     if (region && r.region !== region) return false;
-    if (pass && r.pass !== pass) return false;
     if (r.dayTicket > maxPrice) return false;
     if (tier && getTier(r.dayTicket) !== tier) return false;
     return true;
@@ -250,8 +273,6 @@ function applyFilters() {
 document.getElementById('filter-region').addEventListener('change', applyFilters);
 document.getElementById('filter-price').addEventListener('input', applyFilters);
 document.getElementById('filter-tier').addEventListener('change', applyFilters);
-document.getElementById('filter-pass').addEventListener('change', applyFilters);
-document.getElementById('search-input').addEventListener('input', applyFilters);
 
 renderList(resorts);
 </script>
